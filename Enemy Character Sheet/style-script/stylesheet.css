@@ -1,0 +1,204 @@
+body {
+    font-family: 'Garamond', serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #8b0000;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #8b0000;
+}
+
+#controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #8b0000;
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #b22222;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #8b0000;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #b22222;
+}
+
+#attack-roll-result, #hit-roll-result, #random-attack-result {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#health-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#health-bar {
+    height: 20px;
+    width: 100%;
+    background-color: #ff9999;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+
+@keyframes strobe {
+    0% { background-color: #c0392b; }
+    50% { background-color: #e74c3c; }
+    100% { background-color: #c0392b; }
+}
+
+input[type="number"] {
+    padding: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+#event-log {
+    max-width: 800px;
+    margin: auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #8b0000;
+    height: 200px;
+    overflow-y: auto;
+}
+
+#log-container {
+    max-height: 200px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#log-container p {
+    margin: 5px 0;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#spell-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#spell-section table, #spell-section th, #spell-section td {
+    border: 1px solid #8b0000;
+}
+
+#spell-section th, #spell-section td {
+    padding: 8px;
+    text-align: left;
+}
+
+#spell-section th {
+    width: 20%;
+}
+
+#spell-section td {
+    width: 20%;
+}
+
+.small-button {
+    padding: 2px 5px;
+    font-size: 14px;
+    margin: 0;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.small-button:hover {
+    background-color: #b22222;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
