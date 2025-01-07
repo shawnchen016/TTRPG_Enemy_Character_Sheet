@@ -1,48 +1,51 @@
-let totalHealth = 157;
-let currentHealth = 157;
-const spellSlots = {
-    level1: 3,
-    level3: 1
+let glabrezuHealth = {
+    total: 157,
+    current: 157
 };
 
-function setTotalHealth() {
-    const healthInput = document.getElementById('health-input').value;
-    totalHealth = parseInt(healthInput);
-    currentHealth = totalHealth;
-    document.getElementById('total-health').innerText = totalHealth;
-    document.getElementById('current-health').innerText = currentHealth;
-    updateHealthBar();
-    logEvent(`Hit point total modified from 0 to ${totalHealth}`);
+// Track the number of times each spell has been cast
+let spellCastCount = {
+    'Confusion': 0,
+    'Fly': 0,
+    'Power Word Stun': 0
+};
+
+function setTotalHealthGlabrezu() {
+    const healthInput = document.getElementById('glabrezu-health-input').value;
+    glabrezuHealth.total = parseInt(healthInput);
+    glabrezuHealth.current = glabrezuHealth.total;
+    document.getElementById('glabrezu-total-health').innerText = glabrezuHealth.total;
+    document.getElementById('glabrezu-current-health').innerText = glabrezuHealth.current;
+    updateHealthBarGlabrezu();
+    logEvent(`Glabrezu total health set to ${glabrezuHealth.total}`);
 }
 
-function applyDamage() {
-    const damage = parseInt(document.getElementById('damage-input').value);
-    const oldHealth = currentHealth;
-    currentHealth = Math.max(0, currentHealth - damage);
-    document.getElementById('current-health').innerText = currentHealth;
-    updateHealthBar();
-    logEvent(`${damage} damage received, remaining hitpoints = ${currentHealth}`);
+function applyDamageGlabrezu() {
+    const damage = parseInt(document.getElementById('glabrezu-damage-input').value);
+    glabrezuHealth.current = Math.max(0, glabrezuHealth.current - damage);
+    document.getElementById('glabrezu-current-health').innerText = glabrezuHealth.current;
+    updateHealthBarGlabrezu();
+    logEvent(`Glabrezu received ${damage} damage, current health = ${glabrezuHealth.current}`);
 }
 
-function applyHealing() {
-    const healing = parseInt(document.getElementById('damage-input').value);
-    const oldHealth = currentHealth;
-    currentHealth = Math.min(totalHealth, currentHealth + healing);
-    document.getElementById('current-health').innerText = currentHealth;
-    updateHealthBar();
-    logEvent(`${healing} healing received, remaining hitpoints = ${currentHealth}`);
+function applyHealingGlabrezu() {
+    const healing = parseInt(document.getElementById('glabrezu-damage-input').value);
+    glabrezuHealth.current = Math.min(glabrezuHealth.total, glabrezuHealth.current + healing);
+    document.getElementById('glabrezu-current-health').innerText = glabrezuHealth.current;
+    updateHealthBarGlabrezu();
+    logEvent(`Glabrezu received ${healing} healing, current health = ${glabrezuHealth.current}`);
 }
 
-function updateHealthBar() {
-    const healthBar = document.getElementById('health-bar');
-    const healthStatus = document.getElementById('health-status');
-    const healthPercentage = (currentHealth / totalHealth) * 100;
+function updateHealthBarGlabrezu() {
+    const healthBar = document.getElementById('glabrezu-health-bar');
+    const healthStatus = document.getElementById('glabrezu-health-status');
+    const healthPercentage = (glabrezuHealth.current / glabrezuHealth.total) * 100;
     healthBar.style.width = healthPercentage + '%';
 
-    if (currentHealth === 0) {
+    if (glabrezuHealth.current === 0) {
         healthStatus.innerText = "Dead";
     } else {
-        healthStatus.innerText = currentHealth + " HP";
+        healthStatus.innerText = glabrezuHealth.current + " HP";
     }
 
     if (healthPercentage > 50) {
@@ -60,7 +63,7 @@ function updateHealthBar() {
     }
 }
 
-function rollForAttack(attack) {
+function rollForAttackGlabrezu(attack) {
     const roll = Math.floor(Math.random() * 20) + 1;
     let damage = 0;
     if (attack === 'Pincer') {
@@ -68,17 +71,17 @@ function rollForAttack(attack) {
     } else if (attack === 'Fist') {
         damage = Math.floor(Math.random() * 4 + 1) + Math.floor(Math.random() * 4 + 1) + 2;
     }
-    logEvent(`Enemy used ${attack} with a damage of ${damage}`);
+    logEvent(`Glabrezu used ${attack} with a damage of ${damage}`);
 }
 
-function rollToHit(attack) {
+function rollToHitGlabrezu(spell) {
     const roll = Math.floor(Math.random() * 20) + 1;
-    const hitBonus = 9;
-    const total = roll + hitBonus;
-    logEvent(`Enemy used ${attack} with a roll to hit of ${roll} + ${hitBonus} (${total})`);
+    const spellBonus = 16; // Example spellcasting modifier
+    const total = roll + spellBonus;
+    logEvent(`${spell} roll to hit: ${roll} + ${spellBonus} (${total})`);
 }
 
-function randomAttack() {
+function glabrezuRandomAttack() {
     const attacks = [
         "Multiattack: The glabrezu makes four attacks: two with its pincers and two with its fists. Alternatively, it makes two attacks with its pincers and casts one spell.",
         "Pincer Attack: The glabrezu makes a pincer attack.",
@@ -87,7 +90,29 @@ function randomAttack() {
     ];
     const randomIndex = Math.floor(Math.random() * attacks.length);
     const selectedAttack = attacks[randomIndex];
-    logEvent(`Monster uses ${selectedAttack} and ends its turn.`);
+    logEvent(`Glabrezu uses ${selectedAttack} and ends its turn.`);
+}
+
+function castSpellGlabrezu(spell) {
+    if (spell in spellCastCount) {
+        spellCastCount[spell]++;
+        logEvent(`Glabrezu cast ${spell} for the ${spellCastCount[spell]}${getOrdinal(spellCastCount[spell])} time`);
+    } else {
+        logEvent(`Glabrezu cast ${spell}`);
+    }
+}
+
+function getOrdinal(n) {
+    const s=["th","st","nd","rd"],
+    v=n%100;
+    return (s[(v-20)%10]||s[v]||s[0]);
+}
+
+function rollAbilityCheckGlabrezu(modifier) {
+    const roll = Math.floor(Math.random() * 20) + 1;
+    const modValue = parseInt(modifier.replace('+', ''));
+    const total = roll + modValue;
+    logEvent(`Ability check rolled: 1d20 + ${modValue} (${total})`);
 }
 
 function logEvent(message) {
@@ -96,28 +121,4 @@ function logEvent(message) {
     logEntry.innerText = message;
     logContainer.prepend(logEntry);
     logContainer.scrollTop = 0; // Keep the scroll at the top
-}
-
-function rollSpell(spell) {
-    const roll = Math.floor(Math.random() * 20) + 1;
-    const spellBonus = 8; // Example spellcasting modifier
-    const total = roll + spellBonus;
-    logEvent(`Spell ${spell} roll to hit: ${roll} + ${spellBonus} (${total})`);
-}
-
-function castSpell(spell, level) {
-    if (spellSlots[level] > 0) {
-        spellSlots[level]--;
-        document.getElementById(`${level}-slots`).innerText = spellSlots[level];
-        logEvent(`Spell ${spell} cast.`);
-    } else {
-        logEvent(`No spell slots left for ${spell}.`);
-    }
-}
-
-function rollAbilityCheck(modifier) {
-    const roll = Math.floor(Math.random() * 20) + 1;
-    const modValue = parseInt(modifier.replace('+', ''));
-    const total = roll + modValue;
-    logEvent(`Ability check rolled: 1d20 + ${modValue} (${total})`);
 }
