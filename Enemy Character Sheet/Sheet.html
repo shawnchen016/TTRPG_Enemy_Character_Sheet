@@ -1,166 +1,154 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enemy Character Sheet</title>
+    <title>Glabrezu Stat Sheet</title>
     <link rel="stylesheet" href="style-script/stylesheet.css">
-    <script src="/style-script/script.js" defer></script>
+    <script src="style-script/script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1 id="character-name">Glabrezu</h1>
+        <h1>Monster Stat Sheet</h1>
     </header>
     <main>
-        <div id="controls">
-            <div id="health-bar-container">
-                <div id="health-bar"><span id="health-status"></span></div>
-            </div>
-            <input type="number" id="health-input" placeholder="Enter total health">
-            <button onclick="setTotalHealth()">Set Total Health</button>
-            <input type="number" id="damage-input" placeholder="Enter damage/healing">
-            <button onclick="applyDamage()">Apply Damage</button>
-            <button onclick="applyHealing()">Apply Healing</button>
-            <button onclick="randomAttack()">Random Attack</button>
-            <p id="attack-roll-result"></p>
-            <p id="hit-roll-result"></p>
-            <p id="random-attack-result"></p>
-        </div>
-
-        <section id="stat-block">
-            <h2>Stat Block</h2>
-            <table>
-                <tr>
-                    <td><strong>Armor Class:</strong></td>
-                    <td>17 (natural armor)</td>
-                </tr>
-                <tr>
-                    <td><strong>Hit Points:</strong></td>
-                    <td><span id="current-health">157</span>/<span id="total-health">157</span> (15d10 + 60)</td>
-                </tr>
-                <tr>
-                    <td><strong>Speed:</strong></td>
-                    <td>40 ft., fly 60 ft.</td>
-                </tr>
-                <tr>
-                    <td><strong>Challenge Rating:</strong></td>
-                    <td>9 (5,000 XP)</td>
-                </tr>
-            </table>
-
-			<summary><h3>Abilities & Saving Throws</h3></summary>
-            <table>
-                <tr>
-                    <td><strong>STR:</strong> 20 <button class="small-button" onclick="rollAbilityCheck('+5')">+5</button></td>
-                    <td>Strength Save: <button class="small-button" onclick="rollAbilityCheck('+9')">+9</button></td>
-                </tr>
-                <tr>
-                    <td><strong>DEX:</strong> 15 <button class="small-button" onclick="rollAbilityCheck('+2')">+2</button></td>
-                    <td>Constitution Save: <button class="small-button" onclick="rollAbilityCheck('+9')">+9</button></td>
-                </tr>
-                <tr>
-                    <td><strong>CON:</strong> 21 <button class="small-button" onclick="rollAbilityCheck('+5')">+5</button></td>
-                    <td>Wisdom Save: <button class="small-button" onclick="rollAbilityCheck('+7')">+7</button></td>
-                </tr>
-                <tr>
-                    <td><strong>INT:</strong> 19 <button class="small-button" onclick="rollAbilityCheck('+4')">+4</button></td>
-                    <td>Charisma Save: <button class="small-button" onclick="rollAbilityCheck('+7')">+7</button></td>
-                </tr>
-                <tr>
-                    <td><strong>WIS:</strong> 17 <button class="small-button" onclick="rollAbilityCheck('+3')">+3</button></td>
-                </tr>
-                <tr>
-                    <td><strong>CHA:</strong> 16 <button class="small-button" onclick="rollAbilityCheck('+3')">+3</button></td>
-                </tr>
-            </table>
-
-                <summary><h3>Resistances, Immunities, Languages, Senses & Proficiency</h3></summary>
+            <summary><h2>Glabrezu</h2></summary>
+            <section id="glabrezu-stat-block">
+                <h3>Stat Block</h3>
                 <table>
                     <tr>
-                        <td><strong>Damage Resistances:</strong></td>
-                        <td>Cold, Fire, Lightning; Bludgeoning, Piercing, and Slashing from Nonmagical Attacks</td>
+                        <td><strong>Armor Class:</strong></td>
+                        <td>17 (natural armor)</td>
                     </tr>
                     <tr>
-                        <td><strong>Damage Immunities:</strong></td>
-                        <td>Poison</td>
+                        <td><strong>Hit Points:</strong></td>
+                        <td><span id="glabrezu-current-health">157</span>/<span id="glabrezu-total-health">157</span> (15d10 + 75)</td>
                     </tr>
                     <tr>
-                        <td><strong>Condition Immunities:</strong></td>
-                        <td>Poisoned</td>
+                        <td><strong>Speed:</strong></td>
+                        <td>40 ft.</td>
                     </tr>
                     <tr>
-                        <td><strong>Senses:</strong></td>
-                        <td>Truesight 120 ft., Passive Perception 13</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Languages:</strong></td>
-                        <td>Abyssal, Telepathy 120 ft.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Proficiency Bonus:</strong></td>
-                        <td>+4</td>
+                        <td><strong>Challenge Rating:</strong></td>
+                        <td>15 (13,000 XP)</td>
                     </tr>
                 </table>
 
-                <summary><h3>Traits</h3></summary>
-                <p><strong>Innate Spellcasting:</strong> The glabrezu's spellcasting ability is Intelligence (spell save DC 16). The glabrezu can innately cast the following spells, requiring no material components:</p>
-				<p><strong>Magic Resistance:</strong> The glabrezu has advantage on saving throws against spells and other magical effects.</p>
-			
-			<h3>Spells</h3>
-				<div id="glabrezu-spell-section">
-					<table>
-						<tr>
-							<th style="width: 20%;">Cantrips</th>
-							<th style="width: 80%;">Spell</th>
-						</tr>
-						<tr>
-							<td></td>
-							<td><span class="tooltip">Darkness<span class="tooltiptext">Creates a 15-foot-radius sphere of darkness</span></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><span class="tooltip">Detect Magic<span class="tooltiptext">Detects magical auras</span></span></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><span class="tooltip">Dispel Magic<span class="tooltiptext">Ends spells and magical effects</span></span></td>
-						</tr>
-						</tr>
-						<tr>
-							<td><span id="glabrezu-level1-slots">3</span></td>
-							<td><span class="tooltip">Detect Magic<span class="tooltiptext">Detects magical auras</span></span></td>
-						</tr>
-						<tr>
-							<th style="width: 20%;">Level 3</th>
-							<th style="width: 80%;">Spell</th>
-						</tr>
-						<tr>
-							<td><span id="glabrezu-level3-slots">1</span></td>
-							<td><span class="tooltip">Confusion<span class="tooltiptext">Causes confusion in creatures</span></span></td>
-						</tr>
-						<tr>
-							<td><span id="glabrezu-level3-slots-2">1</span></td>
-							<td><span class="tooltip">Fly<span class="tooltiptext">Grants the ability to fly</span></span></td>
-						</tr>
-						<tr>
-							<td><span id="glabrezu-level3-slots-3">1</span></td>
-							<td><span class="tooltip">Power Word Stun<span class="tooltiptext">Stuns a creature with fewer than 150 hit points</span></span></td>
-						</tr>
-					</table>
-				</div>
+                <div id="glabrezu-health-bar-container">
+                    <div id="glabrezu-health-bar"><span id="glabrezu-health-status"></span></div>
+                </div>
+                <input type="number" id="glabrezu-health-input" placeholder="Enter total health">
+                <button onclick="setTotalHealthGlabrezu()">Set Total Health</button>
+                <input type="number" id="glabrezu-damage-input" placeholder="Enter damage/healing">
+                <button onclick="applyDamageGlabrezu()">Apply Damage</button>
+                <button onclick="applyHealingGlabrezu()">Apply Healing</button>
 
-           <table>
-            <h3>Attacks</h3>
-				<div id="attack-section">
-					<tr>	
-						<p><strong>Pincer</strong> <em>Melee Weapon Attack</em><button onclick="rollToHit('Pincer')">+9 to hit</button>, <button onclick="rollForAttack('Pincer')">2d10 + 5</button> bludgeoning damage. If the target is a Medium or smaller creature, it is grappled (escape DC 15). The glabrezu has two pincers, each of which can grapple only one target.</p>
-					</tr>
-					<tr>
-						<p><strong>Fist<strong> <em>Melee Weapon Attack</em><button onclick="rollToHit('Fist')">+9 to hit</button>, <button onclick="rollForAttack('Fist')">2d4 + 2</button> bludgeoning damage.</p>
-					</tr>
-				</div>
-			</table>
-        </section>
+                <h3>Abilities & Saving Throws</h3>
+                <table>
+                    <tr>
+                        <td><strong>STR:</strong> 20 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+5')">+5</button></td>
+                        <td>Strength Save: <button class="small-button" onclick="rollAbilityCheckGlabrezu('+10')">+10</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>DEX:</strong> 15 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+2')">+2</button></td>
+                        <td>Constitution Save: <button class="small-button" onclick="rollAbilityCheckGlabrezu('+8')">+8</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CON:</strong> 21 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+5')">+5</button></td>
+                        <td>Wisdom Save: <button class="small-button" onclick="rollAbilityCheckGlabrezu('+8')">+8</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>INT:</strong> 19 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+4')">+4</button></td>
+                        <td>Charisma Save: <button class="small-button" onclick="rollAbilityCheckGlabrezu('+9')">+9</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>WIS:</strong> 16 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+3')">+3</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CHA:</strong> 24 <button class="small-button" onclick="rollAbilityCheckGlabrezu('+7')">+7</button></td>
+                    </tr>
+
+                    <summary><h3>Resistances, Immunities, Languages, Senses & Proficiency</h3></summary>
+                    <table>
+                        <tr>
+                            <td><strong>Damage Resistances:</strong></td>
+                            <td>Cold, Fire; Bludgeoning, Piercing, and Slashing from Nonmagical Attacks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Damage Immunities:</strong></td>
+                            <td>Poison</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Condition Immunities:</strong></td>
+                            <td>Poisoned</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senses:</strong></td>
+                            <td>Truesight 120 ft., Passive Perception 13</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Languages:</strong></td>
+                            <td>Abyssal, Common, Telepathy 120 ft.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proficiency Bonus:</strong></td>
+                            <td>+5</td>
+                        </tr>
+                    </table>
+
+                <h3>Spells</h3>
+                <div id="glabrezu-spell-section">
+                    <ul>
+                        <li><strong>At Will:</strong></li>
+                        <li>
+                            <button onclick="castSpellGlabrezu('Darkness')">Cast</button> Darkness <span class="tooltip">Darkness<span class="tooltiptext">Creates a 15-foot-radius sphere of darkness</span></span>
+                        </li>
+                        <li>
+                            <button onclick="castSpellGlabrezu('Detect Magic')">Cast</button> Detect Magic <span class="tooltip">Detect Magic<span class="tooltiptext">Detects magical auras</span></span>
+                        </li>
+                        <li>
+                            <button onclick="castSpellGlabrezu('Dispel Magic')">Cast</button> Dispel Magic <span class="tooltip">Dispel Magic<span class="tooltiptext">Ends spells and magical effects</span></span>
+                        </li>
+                        <li><strong>Once per day each:</strong></li>
+                        <li>
+                            <button onclick="rollToHitGlabrezu('Confusion')">Roll to Hit</button>
+                            <button onclick="castSpellGlabrezu('Confusion')">Cast</button> Confusion <span class="tooltip">Confusion<span class="tooltiptext">Causes confusion in creatures</span></span>
+                        </li>
+                        <li>
+                            <button onclick="rollToHitGlabrezu('Power Word Stun')">Roll to Hit</button>
+                            <button onclick="castSpellGlabrezu('Power Word Stun')">Cast</button> Power Word Stun <span class="tooltip">Power Word Stun<span class="tooltiptext">Stuns a creature with fewer than 150 hit points</span></span>
+                        </li>
+                        <li>
+                            <button onclick="castSpellGlabrezu('Fly')">Cast</button> Fly <span class="tooltip">Fly<span class="tooltiptext">Grants the ability to fly</span></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Attacks</h3>
+                <div id="glabrezu-attack-section">
+                    <table>
+                        <tr>
+                            <th>Attack</th>
+                            <th>To Hit</th>
+                            <th>Damage</th>
+                        </tr>
+                        <tr>
+                            <td>Pincer</td>
+                            <td><button onclick="rollToHitGlabrezu('Pincer')">+9 to hit</button></td>
+                            <td><button onclick="rollForAttackGlabrezu('Pincer')">2d10 + 5 bludgeoning damage</button></td>
+                        </tr>
+                        <tr>
+                            <td>Fist</td>
+                            <td><button onclick="rollToHitGlabrezu('Fist')">+9 to hit</button></td>
+                            <td><button onclick="rollForAttackGlabrezu('Fist')">2d4 + 2 bludgeoning damage</button></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Random Attack Button for Glabrezu -->
+                <p><button onclick="glabrezuRandomAttack()">Random Attack</button></p>
+            </section>
+        </details>
 
         <h2>Event Log</h2>
         <section id="event-log">
