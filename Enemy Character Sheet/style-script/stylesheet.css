@@ -28,11 +28,6 @@ main {
     border: 1px solid #8b0000;
 }
 
-#controls {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 h2 {
     color: #8b0000;
     border-bottom: 2px solid #8b0000;
@@ -74,13 +69,7 @@ button:hover {
     background-color: #b22222;
 }
 
-#attack-roll-result, #hit-roll-result, #random-attack-result {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-#health-bar-container {
+#health-bar-container, #glabrezu-health-bar-container {
     width: 100%;
     background-color: #ddd;
     border: 1px solid #333;
@@ -91,7 +80,7 @@ button:hover {
     position: relative;
 }
 
-#health-bar {
+#health-bar, #glabrezu-health-bar {
     height: 20px;
     width: 100%;
     background-color: #ff9999;
@@ -138,43 +127,6 @@ input[type="number"] {
     padding-bottom: 5px;
 }
 
-#spell-section table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-#spell-section table, #spell-section th, #spell-section td {
-    border: 1px solid #8b0000;
-}
-
-#spell-section th, #spell-section td {
-    padding: 8px;
-    text-align: left;
-}
-
-#spell-section th {
-    width: 20%;
-}
-
-#spell-section td {
-    width: 20%;
-}
-
-.small-button {
-    padding: 2px 5px;
-    font-size: 14px;
-    margin: 0;
-    background-color: #8b0000;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.small-button:hover {
-    background-color: #b22222;
-}
 .tooltip {
     position: relative;
     display: inline-block;
@@ -201,4 +153,28 @@ input[type="number"] {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.small-button {
+    padding: 2px 5px;
+    font-size: 14px;
+    margin: 0;
+    background-color: #8b0000;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.small-button:hover {
+    background-color: #b22222;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
 }
